@@ -1,0 +1,3 @@
+/home/pedrodorf/gitp/Zap/build-Zapocet-Desktop-Debug/CMakeFiles/edit_cache.dir
+/home/pedrodorf/gitp/Zap/build-Zapocet-Desktop-Debug/CMakeFiles/rebuild_cache.dir
+/home/pedrodorf/gitp/Zap/build-Zapocet-Desktop-Debug/CMakeFiles/Zapocet.dir

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+   <FileVersion major="1" minor="6" />
+   <Project>
+      <Option title="Zapocet" />
+      <Option makefile_is_custom="1" />
+      <Option compiler="gcc" />
+      <Option virtualFolders="CMake Files\;" />
+      <Build>
+      <Target title="all">
+         <Option working_dir="/home/pedrodorf/gitp/Zap/build-Zapocet-Desktop-Debug" />
+         <Option type="4" />
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/pedrodorf/gitp/Zap/build-Zapocet-Desktop-Debug/Makefile&quot;  VERBOSE=1 all" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/pedrodorf/gitp/Zap/build-Zapocet-Desktop-Debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/pedrodorf/gitp/Zap/build-Zapocet-Desktop-Debug/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/pedrodorf/gitp/Zap/build-Zapocet-Desktop-Debug/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="edit_cache">
+         <Option working_dir="/home/pedrodorf/gitp/Zap/build-Zapocet-Desktop-Debug" />
+         <Option type="4" />
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/pedrodorf/gitp/Zap/build-Zapocet-Desktop-Debug/Makefile&quot;  VERBOSE=1 edit_cache" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/pedrodorf/gitp/Zap/build-Zapocet-Desktop-Debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/pedrodorf/gitp/Zap/build-Zapocet-Desktop-Debug/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/pedrodorf/gitp/Zap/build-Zapocet-Desktop-Debug/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="rebuild_cache">
+         <Option working_dir="/home/pedrodorf/gitp/Zap/build-Zapocet-Desktop-Debug" />
+         <Option type="4" />
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/pedrodorf/gitp/Zap/build-Zapocet-Desktop-Debug/Makefile&quot;  VERBOSE=1 rebuild_cache" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/pedrodorf/gitp/Zap/build-Zapocet-Desktop-Debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/pedrodorf/gitp/Zap/build-Zapocet-Desktop-Debug/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/pedrodorf/gitp/Zap/build-Zapocet-Desktop-Debug/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="Zapocet">
+         <Option output="/home/pedrodorf/gitp/Zap/build-Zapocet-Desktop-Debug/Zapocet" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="/home/pedrodorf/gitp/Zap/build-Zapocet-Desktop-Debug" />
+         <Option object_output="./" />
+         <Option type="1" />
+         <Option compiler="gcc" />
+         <Compiler>
+            <Add directory="/usr/include" />
+            <Add directory="/usr/include/c++/6" />
+            <Add directory="/usr/include/c++/6/backward" />
+            <Add directory="/usr/include/x86_64-linux-gnu" />
+            <Add directory="/usr/include/x86_64-linux-gnu/c++/6" />
+            <Add directory="/usr/lib/gcc/x86_64-linux-gnu/6/include" />
+            <Add directory="/usr/lib/gcc/x86_64-linux-gnu/6/include-fixed" />
+            <Add directory="/usr/local/include" />
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/pedrodorf/gitp/Zap/build-Zapocet-Desktop-Debug/Makefile&quot;  VERBOSE=1 Zapocet" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/pedrodorf/gitp/Zap/build-Zapocet-Desktop-Debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/pedrodorf/gitp/Zap/build-Zapocet-Desktop-Debug/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/pedrodorf/gitp/Zap/build-Zapocet-Desktop-Debug/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="Zapocet/fast">
+         <Option output="/home/pedrodorf/gitp/Zap/build-Zapocet-Desktop-Debug/Zapocet" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="/home/pedrodorf/gitp/Zap/build-Zapocet-Desktop-Debug" />
+         <Option object_output="./" />
+         <Option type="1" />
+         <Option compiler="gcc" />
+         <Compiler>
+            <Add directory="/usr/include" />
+            <Add directory="/usr/include/c++/6" />
+            <Add directory="/usr/include/c++/6/backward" />
+            <Add directory="/usr/include/x86_64-linux-gnu" />
+            <Add directory="/usr/include/x86_64-linux-gnu/c++/6" />
+            <Add directory="/usr/lib/gcc/x86_64-linux-gnu/6/include" />
+            <Add directory="/usr/lib/gcc/x86_64-linux-gnu/6/include-fixed" />
+            <Add directory="/usr/local/include" />
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/pedrodorf/gitp/Zap/build-Zapocet-Desktop-Debug/Makefile&quot;  VERBOSE=1 Zapocet/fast" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/pedrodorf/gitp/Zap/build-Zapocet-Desktop-Debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/pedrodorf/gitp/Zap/build-Zapocet-Desktop-Debug/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/pedrodorf/gitp/Zap/build-Zapocet-Desktop-Debug/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      </Build>
+      <Unit filename="/home/pedrodorf/gitp/Zap/Zapocet/main.c">
+         <Option target="Zapocet"/>
+      </Unit>
+      <Unit filename="/home/pedrodorf/gitp/Zap/Zapocet/CMakeLists.txt">
+          <Option virtualFolder="CMake Files\" />
+      </Unit>
+   </Project>
+</CodeBlocks_project_file>
