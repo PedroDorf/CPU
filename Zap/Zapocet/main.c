@@ -3,7 +3,22 @@
 #include <ctype.h>
 #include <string.h>
 #include <stdbool.h>
-//why is here and \n "karel<eof>"
+//why is there a '\n' "karel<eof>"
+
+
+
+//Mozes mi prosim ta povedat preco mi valgrind vypisuje
+//ze niektore values su neinicializovane? aj ked teda su/mali by byt inicializovane?
+//napr.
+//char *arr[lines];
+//pise mi ze je to neinicializovane... aj ked, ked zapnem debuger vsetko je nastavene na 0x0
+//pise mi tam chybu az pokial nenapisem toto:
+//for (int i = 0; i < lines; ++i) {
+//    arr[i] = NULL;
+//}
+
+
+
 
 struct human {
     char *id;
@@ -13,6 +28,7 @@ struct human {
     int n_f;
 };
 
+//Whoose id it is
 int choose(char *id,struct human ppl[]) {
     for (int i = 0; ppl[i].id != NULL; ++i) {
         if (!strcmp(id,ppl[i].id)) {
@@ -22,7 +38,8 @@ int choose(char *id,struct human ppl[]) {
     return -1;
 }
 
-void addF(struct human person, char *line) {
+//Adds friend
+void addF(struct human *person, char *line) {
     char *FD = malloc(64);
     for (int i = 0; line[i] != '\0'; ++i) {
         if (line[i] == ':') {
@@ -30,19 +47,22 @@ void addF(struct human person, char *line) {
                 FD[j] = line[i + 1 + j];
                 FD[j + 1] = '\0';
             }
-            break;
+
         }
+
     }
-    person.friends[person.n_f] = FD;
-    person.n_f += 1;
+    person->friends[person->n_f] = FD;
+    person->n_f += 1;
     return;
 }
 
+//Chooses whether it is a Bday key or friend key
 void chooseNadd(struct human ppl[], char *line) {
     for (int i = 0; line[i] != '\0'; ++i) {
         if (line[i] == '.') {
             if (line[i + 1] == 'b') {
-                char *bday = malloc(64);
+                char *bday;
+                bday = malloc(sizeof(char)*64);
                 char *id = malloc(64);
                 for (int x = 0; line[x] != '.'; ++x) {
                     id[x] = line[x];
@@ -51,8 +71,8 @@ void chooseNadd(struct human ppl[], char *line) {
                 int per = choose(id,ppl);
                 free(id);
                 id = NULL;
-                for (int j = 0; line[i + 1 + j] != '\0'; ++j) {
-                    bday[j] = line[i + j + 1];
+                for (int j = 0; line[i + 11 + j] != '\0'; ++j) {
+                    bday[j] = line[i + j + 11];
                     bday[j + 1] = '\0';
                 }
                 ppl[per].date = bday;
@@ -65,7 +85,7 @@ void chooseNadd(struct human ppl[], char *line) {
                 int per = choose(id,ppl);
                 free(id);
                 id = NULL;
-                addF(ppl[per],line);
+                addF(&ppl[per],line);
             }
             break;
         }
@@ -73,23 +93,33 @@ void chooseNadd(struct human ppl[], char *line) {
     return;
 }
 
+//frees all people
 void freedom(struct human ppl[]) {
     for (int i = 0; ppl[i].id != NULL; ++i) {
-        if (!ppl[i].id) {
+
+        if (ppl[i].id) {
             free(ppl[i].id);
             ppl[i].id = NULL;
         }
-        if (!ppl[i].name) {
+        if (ppl[i].name) {
             free(ppl[i].name);
             ppl[i].name = NULL;
         }
-        if (!ppl[i].date) {
+        if (ppl[i].date) {
             free(ppl[i].date);
             ppl[i].date = NULL;
         }
+        if (ppl[i].friends[0]) {
+            for (int j = ppl[i].n_f; j != 0; --j) {
+                free(ppl[i].friends[j - 1]);
+                ppl[i].friends[j - 1] = NULL;
+            }
+        }
+
     }
 }
 
+//prints the wanted output
 void print(struct human ppl[]) {
     for (int i = 0; ppl[i].id != NULL; ++i) {
         printf("%s Date = %s Pratele(",ppl[i].name,ppl[i].date);
@@ -105,13 +135,12 @@ void print(struct human ppl[]) {
 
 }
 
-
-
+//Reads the file and stores it in ARR
 void readF(FILE *file, char *arr[]) {
     int sizeofline = 1024;
-    char c;
+    char c = 'a';
     for (int i = 0; c != EOF; ++i) {
-        char *str = malloc(sizeofline + 1);
+        char *str = malloc(sizeofline + 1); //toto je zevraj neinicializovane... ako to mam inicializovat
         *(str) = '\0';
         for (int j = 0; c != EOF; ++j) {
             c = fgetc(file);
@@ -121,27 +150,33 @@ void readF(FILE *file, char *arr[]) {
             *(str + j) = c;
             *(str + j + 1) = '\0';
         }
-        if (*(str) == '\0') {
-            continue;
-        }
         if (c == EOF) {
+            free(str);
+            str = NULL;
             break;
         }
+        if (*(str) == '\0') {
+            continue;
+        }   
         arr[i] = str;
+
     }
+
     return;
 }
 
+//Adds name and ID to the human
 int addN(char *line, struct human ppl[],int pers) {
     char *id = malloc(64);
     char *call = malloc(64);
-    for (int i = 0; line[i] != '.'; i++) {
+    for (int i = 0; line[i] != ':'; i++) {
         id[i] = line[i];
         id[i + 1] = '\0';
     }
+
     ppl[pers].id = id;
     for (int i = 0; line[i] != '\0'; ++i) {
-        if (line[i] == '.') {
+        if (line[i] == ':') {
             for (int j = 0; line[i+j+1] != '\0'; ++j) {
                 call[j] = line[i+j+1];
                 call[j + 1] = '\0';
@@ -155,6 +190,7 @@ int addN(char *line, struct human ppl[],int pers) {
     return pers;
 }
 
+//Procesess the text
 void proc(char *arr[], struct human ppl[]) {
     int pers = 0;
     for (int i = 0; arr[i] != NULL; ++i) {
@@ -168,72 +204,20 @@ void proc(char *arr[], struct human ppl[]) {
             }
             if (dot) {
                 chooseNadd(ppl,arr[i]);
+                break;
+
             }
         }
     }
-
-
-    /*
-    int person = 0;
-    int pk = 0;
-    int pv = 0;
-    char *str = malloc(1025);
-    for (int i = 0; arr[i] != NULL; ++i) {
-        pk = 0;
-        pv = 0;
-        bool ak = false;
-        for (int j = 0; arr[i][j] != '\0'; ++j) {
-            if (arr[i][j] == ':' && !ak) {
-                ppl[person].id = str;
-                char *nam = malloc(64);
-                strcpy(nam,&arr[i][j + 1]);
-                ppl[person].name = nam;
-                break;
-            }
-            if (arr[i][j] == ':' && ak) {
-                pv = j + 1;
-                arr[i][j] = '\0';
-                continue;
-            }
-            if (arr[i][j] == '.' && !ak) {
-                arr[i][j] = '\0';
-                pk = j + 1;
-                ak = true;
-                continue;
-            }
-            str[j] = arr[i][j];
-            str[j + 1] = '\0';
-        }
-        if (ak) {
-            int x = 0;
-            switch (str[pk]) {
-            case 'f':
-                for (x = 0; ppl[x].id != NULL; ++x) {
-                    if (!strcmp(&str[pv],ppl[x].id)) {
-                        break;
-                    }
-                }
-                addF(ppl[person],ppl[x].name);
-                break;
-
-
-            case 'b':
-                ppl[person].date = malloc(64);
-                strcpy(ppl[person].date,&str[pv]);
-                break;
-            default:
-                break;
-            }
-        }
-        person++;
-    }*/
 }
 
 int main(int argc, char *argv[])
 {
-
     int lines = 64;
     char *arr[lines];
+    for (int i = 0; i < lines; ++i) {
+        arr[i] = NULL;
+    }
     struct human ppl[256];
     if (argc > 2) {
         printf("Too many parameters.\n");
@@ -245,38 +229,15 @@ int main(int argc, char *argv[])
         return 0;
     }
 
-
-
-
     readF(file,arr);
     fclose(file);
-
-
-    for (int i = 0; arr[i] != NULL; ++i) {
-        printf("%s0\n",arr[i]);
-    }
-
-
     proc(arr,ppl);
-    for (int i = 0; ppl[i].id != NULL; ++i) {
-        printf("%s0 %s0 %s0\n",ppl[i].id,ppl[i].date,ppl[i].name);
-    }
+    //frees the text
     for (int i = 0; arr[i] != NULL; ++i) {
         free(arr[i]);
         arr[i] = NULL;
     }
     print(ppl);
     freedom(ppl);
-
-
-
-
-    //precitat subor ak sa nepodari spravne to ukoncit
-    //precita subor...
-    //spracuje ho do struktury
-    //vypise kazdy kluc
-    //: je vzdy prva
-    //ak je zadanny priatel tak uz pred tym bol definovany
-
     return 0;
 }

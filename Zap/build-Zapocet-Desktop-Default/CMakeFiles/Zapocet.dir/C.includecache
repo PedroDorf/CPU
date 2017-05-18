@@ -11,4 +11,10 @@ stdio.h
 -
 stdlib.h
 -
+ctype.h
+-
+string.h
+-
+stdbool.h
+-
 
